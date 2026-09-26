@@ -820,6 +820,10 @@ section {
 }
 
 .contact-form textarea { min-height: 120px; resize: vertical; }
+.contact-form button:disabled { opacity: 0.5; cursor: wait; }
+.form-status { min-height: 1.4em; font-style: italic; color: var(--text-dim); }
+.form-status.error { color: #d98a7a; }
+.form-status a { color: inherit; }
 
 /* --- FOOTER --- */
 footer {
@@ -1656,6 +1660,7 @@ footer .footer-tagline {
         <input type="text" placeholder="Subject">
         <textarea placeholder="Tell us about the instrument you're looking for, or schedule a visit..."></textarea>
         <button type="submit" class="btn">Send Message</button>
+        <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
       </form>
     </div>
   </div>
@@ -2054,14 +2059,41 @@ var revealObserver = new IntersectionObserver(function(entries) {
 document.querySelectorAll(".reveal").forEach(function(el) { revealObserver.observe(el); });
 
 // === CONTACT FORM ===
+var CONTACT_EMAIL = "Contacto.israpercu@gmail.com";
 document.getElementById("contact-form").addEventListener("submit", function(e) {
   e.preventDefault();
-  var name = this.querySelector('input[type="text"]').value;
-  var email = this.querySelector('input[type="email"]').value;
-  var subject = this.querySelectorAll('input[type="text"]')[1].value || "Handpan Inquiry";
-  var message = this.querySelector("textarea").value;
-  var body = "Name: " + name + "\nEmail: " + email + "\n\n" + message;
-  window.location.href = "mailto:Contacto.israpercu@gmail.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+  var form = this;
+  var button = form.querySelector('button[type="submit"]');
+  var status = document.getElementById("form-status");
+  var name = form.querySelector('input[type="text"]').value;
+  var email = form.querySelector('input[type="email"]').value;
+  var subject = form.querySelectorAll('input[type="text"]')[1].value || "Handpan Inquiry";
+  var message = form.querySelector("textarea").value;
+  var mailto = "mailto:" + CONTACT_EMAIL + "?subject=" + encodeURIComponent(subject) +
+    "&body=" + encodeURIComponent("Name: " + name + "\nEmail: " + email + "\n\n" + message);
+
+  button.disabled = true;
+  status.className = "form-status";
+  status.textContent = "Sending…";
+
+  fetch("https://formsubmit.co/ajax/" + CONTACT_EMAIL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "Accept": "application/json" },
+    body: JSON.stringify({
+      name: name, email: email, message: message,
+      _subject: "SHIVAPAN website: " + subject,
+      _replyto: email, _template: "table", _captcha: "false"
+    })
+  }).then(function(res) { return res.json(); }).then(function(data) {
+    if (String(data.success) !== "true") throw new Error(data.message || "send failed");
+    form.reset();
+    status.textContent = "Thank you — your message has been sent. We will reply soon.";
+  }).catch(function() {
+    status.className = "form-status error";
+    status.innerHTML = 'Sorry, the message could not be sent. Please write to us at <a href="' + mailto + '">' + CONTACT_EMAIL + '</a>.';
+  }).finally(function() {
+    button.disabled = false;
+  });
 });
 </script>
 
