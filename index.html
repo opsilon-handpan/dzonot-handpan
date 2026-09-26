@@ -45,7 +45,7 @@
     "addressCountry": "MX"
   },
   "areaServed": ["MX", "Riviera Maya", "Quintana Roo"],
-  "founder": { "@type": "Person", "name": "Israel", "jobTitle": "Handpan maker" },
+  "founder": { "@type": "Person", "name": "Israel", "jobTitle": "Handpan maker", "image": "https://shivapan.com/images/israel-handpan-maker-tulum.jpg" },
   "knowsAbout": ["Handpan", "Hang drum", "Handpan tuning", "Handpan scales"]
 }
 </script>
@@ -456,6 +456,19 @@ section {
 }
 
 .section-text:last-child { margin-bottom: 0; }
+
+.maker-portrait { margin: 40px 0 48px; }
+.maker-portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 18%, #000 82%, transparent),
+                      linear-gradient(to bottom, transparent, #000 10%, #000 80%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent, #000 18%, #000 82%, transparent),
+              linear-gradient(to bottom, transparent, #000 10%, #000 80%, transparent);
+  mask-composite: intersect;
+}
 
 /* --- SCROLL REVEAL --- */
 .reveal {
@@ -1362,6 +1375,10 @@ footer .footer-tagline {
   <div class="container reveal">
     <h2 class="section-title">The Hands Behind the Sound</h2>
     <p class="section-subtitle">Israel — Handpan maker, Tulum, México</p>
+    <figure class="maker-portrait">
+      <img src="images/israel-handpan-maker-tulum.jpg" width="1536" height="1024" loading="lazy" decoding="async"
+           alt="Israel, handpan maker of SHIVAPAN, playing one of his handpans in Tulum, México">
+    </figure>
     <p class="section-text">
       Israel is a handpan maker based in Tulum, México — one of the few artisans in the country dedicated to this craft. His journey began with a fascination for the handpan's unique voice and evolved into a deep commitment to creating instruments that embody the spirit of the land he calls home.
     </p>
