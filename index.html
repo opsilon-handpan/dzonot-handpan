@@ -46,7 +46,13 @@
   },
   "areaServed": ["MX", "Riviera Maya", "Quintana Roo"],
   "founder": { "@type": "Person", "name": "Israel", "jobTitle": "Handpan maker", "image": "https://shivapan.com/images/israel-handpan-maker-tulum.jpg" },
-  "knowsAbout": ["Handpan", "Hang drum", "Handpan tuning", "Handpan scales"]
+  "knowsAbout": ["Handpan", "Hang drum", "Handpan tuning", "Handpan scales"],
+  "makesOffer": [
+    { "@type": "Offer", "price": "20000", "priceCurrency": "MXN", "availability": "https://schema.org/InStock",
+      "itemOffered": { "@type": "Product", "name": "SHIVAPAN Handpan D Kurd 9 — Stainless Ember", "image": "https://shivapan.com/images/handpan-d-kurd-stainless-ember-1.jpg" } },
+    { "@type": "Offer", "price": "15000", "priceCurrency": "MXN", "availability": "https://schema.org/InStock",
+      "itemOffered": { "@type": "Product", "name": "SHIVAPAN Handpan D Kurd 9 — Nitrided Steel", "image": "https://shivapan.com/images/handpan-d-kurd-nitrided.jpg" } }
+  ]
 }
 </script>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
@@ -503,6 +509,39 @@ section {
 .reveal-stagger.revealed > *:nth-child(8) { transition-delay: 420ms; }
 .reveal-stagger.revealed > *:nth-child(9) { transition-delay: 480ms; }
 .reveal-stagger.revealed > *:nth-child(10) { transition-delay: 540ms; }
+
+/* --- AVAILABLE INSTRUMENTS --- */
+.available-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+.available-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: all 0.4s var(--ease-out);
+}
+.available-card:hover {
+  border-color: rgba(201,162,74,0.25);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 0 30px rgba(201,162,74,0.05);
+}
+.available-card img { display: block; width: 100%; height: auto; aspect-ratio: 1; }
+.available-body { padding: 26px 28px 30px; display: flex; flex-direction: column; flex: 1; }
+.available-body h3 { font-size: 20px; margin-bottom: 2px; }
+.available-body .scale-mayan { font-size: 13px; color: var(--gold-dim); letter-spacing: 2px; margin-bottom: 12px; font-family: 'Cinzel', serif; }
+.available-body .scale-notes { font-size: 12px; color: var(--gold); letter-spacing: 1px; margin-bottom: 12px; font-family: monospace; }
+.available-body p { font-size: 15px; color: var(--text-dim); line-height: 1.8; flex: 1; }
+.available-price { font-family: 'Cinzel', serif; font-size: 26px; color: var(--gold); margin: 18px 0 16px; letter-spacing: 1px; }
+.available-price span { font-size: 13px; color: var(--gold-dim); letter-spacing: 2px; }
+.available-btn { text-align: center; }
+.available-ask { display: block; text-align: center; margin-top: 12px; font-size: 14px; font-style: italic; color: var(--text-dim); }
+.available-ask:hover { color: var(--gold); }
+.available-note { text-align: center; margin-top: 32px; color: var(--text-dim); font-style: italic; font-size: 15px; }
 
 /* --- INSTRUMENTS --- */
 .scales-grid {
@@ -1317,6 +1356,7 @@ footer .footer-tagline {
   <ul class="nav-links" id="nav-links">
     <li><a href="#origin">Origin</a></li>
     <li><a href="#maker">The Maker</a></li>
+    <li><a href="#available">Available</a></li>
     <li><a href="#instruments">Scales</a></li>
     <li><a href="#player">Play</a></li>
     <li><a href="#articles">Knowledge</a></li>
@@ -1353,13 +1393,13 @@ footer .footer-tagline {
 <!-- ORIGIN -->
 <section id="origin">
   <div class="container reveal">
-    <h2 class="section-title">Ts'onot — Where Sound Begins</h2>
-    <p class="section-subtitle">From the Mayan word for cenote: a portal between worlds</p>
+    <h2 class="section-title">Shiva — Where Sound Begins</h2>
+    <p class="section-subtitle">The drum that sets the universe in motion</p>
     <p class="section-text">
-      In the ancient Yucatán, the Maya knew places where the earth opened to reveal sacred waters — the cenotes, or <em>ts'onotob</em>. These underground pools were portals between worlds, places of silence, resonance, and transformation.
+      In Hindu tradition, Shiva dances the cosmic dance of creation, and in his hand he holds the <em>damaru</em> — a small drum whose rhythm is said to have awakened the first sounds of the universe. Every vibration, every note, every heartbeat is an echo of that first pulse.
     </p>
     <p class="section-text">
-      SHIVAPAN instruments carry this same essence. Each one is a vessel of resonance, shaped from steel yet alive with the voice of something ancient and elemental. Like the cenote, the handpan holds stillness at its center — and from that stillness, music is born.
+      SHIVAPAN instruments carry this same essence. Each one is a vessel of resonance, shaped from steel yet alive with the voice of something ancient and elemental. Born in Tulum, between the jungle and the sea, the handpan holds stillness at its center — and from that stillness, music is born.
     </p>
   </div>
 </section>
@@ -1388,6 +1428,61 @@ footer .footer-tagline {
     <p class="section-text">
       His instruments are not mass-produced. Each one is created with intention, tuned to a specific scale, and made to be felt — not just heard.
     </p>
+  </div>
+</section>
+
+<div class="mayan-divider">
+  <svg viewBox="0 0 600 16" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 8 H20 V2 H40 V8 H60 V14 H80 V8 H100 V2 H120 V8 H140 V14 H160 V8 H180 V2 H200 V8 H220 V14 H240 V8 H260 V2 H280 V8 H300 V14 H320 V8 H340 V2 H360 V8 H380 V14 H400 V8 H420 V2 H440 V8 H460 V14 H480 V8 H500 V2 H520 V8 H540 V14 H560 V8 H580 V2 H600" stroke="#c9a24a" stroke-width="0.8" fill="none"/>
+  </svg>
+</div>
+
+<!-- AVAILABLE INSTRUMENTS -->
+<section id="available">
+  <div class="container" style="max-width:1100px">
+    <div class="reveal">
+      <h2 class="section-title">Available Instruments</h2>
+      <p class="section-subtitle">Handpans ready to find their player — D Minor (D Kurd 9)</p>
+    </div>
+    <div class="available-grid reveal reveal-stagger">
+      <article class="available-card">
+        <img src="images/handpan-d-kurd-stainless-ember-1.jpg" width="1000" height="1000" loading="lazy" decoding="async" alt="SHIVAPAN handpan D Kurd 9 in stainless steel with ember finish">
+        <div class="available-body">
+          <h3>D Kurd 9</h3>
+          <div class="scale-mayan">Stainless Ember · No. 1</div>
+          <div class="scale-notes">D3 · A3 · Bb3 · C4 · D4 · E4 · F4 · G4 · A4</div>
+          <p>Stainless steel with a warm ember finish. Bright, clear tone with a long, singing sustain — and naturally resistant to rust and humidity, ideal for the tropical climate of the Riviera Maya.</p>
+          <div class="available-price">$20,000 <span>MXN</span></div>
+          <a class="btn available-btn" href="https://wa.me/529842768616?text=Hola%21%20I%20am%20interested%20in%20the%20D%20Kurd%209%20Stainless%20Ember%20No.%201%20handpan." target="_blank" rel="noopener">Reserve via WhatsApp</a>
+          <a class="available-ask" href="#contact" data-subject="D Kurd 9 — Stainless Ember · No. 1">or send a message</a>
+        </div>
+      </article>
+      <article class="available-card">
+        <img src="images/handpan-d-kurd-nitrided.jpg" width="1000" height="1000" loading="lazy" decoding="async" alt="SHIVAPAN handpan D Kurd 9 in dark nitrided steel">
+        <div class="available-body">
+          <h3>D Kurd 9</h3>
+          <div class="scale-mayan">Nitrided Steel</div>
+          <div class="scale-notes">D3 · A3 · Bb3 · C4 · D4 · E4 · F4 · G4 · A4</div>
+          <p>Classic nitrided steel with a deep, dark finish. A warm, round and intimate voice with a softer sustain — the traditional handpan sound, perfect for meditation and slow, expressive playing.</p>
+          <div class="available-price">$15,000 <span>MXN</span></div>
+          <a class="btn available-btn" href="https://wa.me/529842768616?text=Hola%21%20I%20am%20interested%20in%20the%20D%20Kurd%209%20Nitrided%20Steel%20handpan." target="_blank" rel="noopener">Reserve via WhatsApp</a>
+          <a class="available-ask" href="#contact" data-subject="D Kurd 9 — Nitrided Steel">or send a message</a>
+        </div>
+      </article>
+      <article class="available-card">
+        <img src="images/handpan-d-kurd-stainless-ember-2.jpg" width="1000" height="1000" loading="lazy" decoding="async" alt="SHIVAPAN handpan D Kurd 9 in stainless steel with ember finish, second instrument">
+        <div class="available-body">
+          <h3>D Kurd 9</h3>
+          <div class="scale-mayan">Stainless Ember · No. 2</div>
+          <div class="scale-notes">D3 · A3 · Bb3 · C4 · D4 · E4 · F4 · G4 · A4</div>
+          <p>Stainless steel with a warm ember finish. Bright, clear tone with a long, singing sustain — and naturally resistant to rust and humidity, ideal for the tropical climate of the Riviera Maya.</p>
+          <div class="available-price">$20,000 <span>MXN</span></div>
+          <a class="btn available-btn" href="https://wa.me/529842768616?text=Hola%21%20I%20am%20interested%20in%20the%20D%20Kurd%209%20Stainless%20Ember%20No.%202%20handpan." target="_blank" rel="noopener">Reserve via WhatsApp</a>
+          <a class="available-ask" href="#contact" data-subject="D Kurd 9 — Stainless Ember · No. 2">or send a message</a>
+        </div>
+      </article>
+    </div>
+    <p class="available-note">Prices in Mexican pesos. Carrying bag included · Shipping not included · Visits in Tulum by appointment.</p>
   </div>
 </section>
 
@@ -2120,6 +2215,14 @@ var revealObserver = new IntersectionObserver(function(entries) {
 }, { threshold: 0.08 });
 
 document.querySelectorAll(".reveal").forEach(function(el) { revealObserver.observe(el); });
+
+// === AVAILABLE: prefill contact subject ===
+document.querySelectorAll(".available-ask").forEach(function(link) {
+  link.addEventListener("click", function() {
+    var subjectInput = document.querySelectorAll('#contact-form input[type="text"]')[1];
+    if (subjectInput) subjectInput.value = "Available instrument: " + link.getAttribute("data-subject");
+  });
+});
 
 // === CONTACT FORM ===
 var CONTACT_EMAIL = "Contacto.israpercu@gmail.com";
