@@ -546,6 +546,21 @@ section {
 .available-btn { text-align: center; }
 .available-ask { display: block; text-align: center; margin-top: 12px; font-size: 14px; font-style: italic; color: var(--text-dim); }
 .available-ask:hover { color: var(--gold); }
+.available-video { margin: 6px 0 2px; }
+.available-video .yt-play {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  width: 100%; cursor: pointer; background: transparent; color: var(--gold);
+  border: 1px solid var(--gold-dim); border-radius: 4px; padding: 11px 14px;
+  font-family: 'Cinzel', serif; font-size: 14px; letter-spacing: 2px;
+  transition: background .3s ease, color .3s ease;
+}
+.available-video .yt-play:hover { background: var(--gold); color: #0b0b0b; }
+.available-video .yt-play svg { width: 15px; height: 15px; fill: currentColor; flex-shrink: 0; }
+.available-video .yt-frame {
+  position: relative; width: 100%; max-width: 260px; margin: 4px auto 0;
+  aspect-ratio: 9 / 16; border-radius: 6px; overflow: hidden; background: #000;
+}
+.available-video .yt-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 .available-note { text-align: center; margin-top: 32px; color: var(--text-dim); font-style: italic; font-size: 15px; }
 
 /* --- INSTRUMENTS --- */
@@ -1458,6 +1473,12 @@ footer .footer-tagline {
           <div class="scale-mayan">Inoxidable Ember · No. 1</div>
           <div class="scale-notes">D3 · A3 · Bb3 · C4 · D4 · E4 · F4 · G4 · A4</div>
           <p>Acero inoxidable con un cálido acabado ember. Tono brillante y claro, con un sustain largo y cantado, y naturalmente resistente al óxido y la humedad: ideal para el clima tropical de la Riviera Maya.</p>
+          <div class="available-video">
+            <button type="button" class="yt-play" data-yt="ngSFghX1BKQ" aria-label="Reproducir el video de este handpan">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+              <span>Escúchalo</span>
+            </button>
+          </div>
           <div class="available-price">$20,000 <span>MXN</span></div>
           <a class="btn available-btn" href="https://wa.me/529842768616?text=Hola%21%20Me%20interesa%20el%20handpan%20D%20Kurd%209%20Inoxidable%20Ember%20No.%201." target="_blank" rel="noopener">Apartar por WhatsApp</a>
           <a class="available-ask" href="#contact" data-subject="D Kurd 9 — Inoxidable Ember · No. 1">o envía un mensaje</a>
@@ -1470,6 +1491,12 @@ footer .footer-tagline {
           <div class="scale-mayan">Acero nitrurado</div>
           <div class="scale-notes">D3 · A3 · Bb3 · C4 · D4 · E4 · F4 · G4 · A4</div>
           <p>Acero nitrurado clásico con un acabado oscuro y profundo. Una voz cálida, redonda e íntima, con un sustain más suave: el sonido tradicional del handpan, perfecto para la meditación y para tocar de forma lenta y expresiva.</p>
+          <div class="available-video">
+            <button type="button" class="yt-play" data-yt="D9-pppzhFlI" aria-label="Reproducir el video de este handpan">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+              <span>Escúchalo</span>
+            </button>
+          </div>
           <div class="available-price">$15,000 <span>MXN</span></div>
           <a class="btn available-btn" href="https://wa.me/529842768616?text=Hola%21%20Me%20interesa%20el%20handpan%20D%20Kurd%209%20de%20acero%20nitrurado." target="_blank" rel="noopener">Apartar por WhatsApp</a>
           <a class="available-ask" href="#contact" data-subject="D Kurd 9 — Acero nitrurado">o envía un mensaje</a>
@@ -1482,6 +1509,12 @@ footer .footer-tagline {
           <div class="scale-mayan">Inoxidable Ember · No. 2</div>
           <div class="scale-notes">D3 · A3 · Bb3 · C4 · D4 · E4 · F4 · G4 · A4</div>
           <p>Acero inoxidable con un cálido acabado ember. Tono brillante y claro, con un sustain largo y cantado, y naturalmente resistente al óxido y la humedad: ideal para el clima tropical de la Riviera Maya.</p>
+          <div class="available-video">
+            <button type="button" class="yt-play" data-yt="MNaCr2uWbfg" aria-label="Reproducir el video de este handpan">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+              <span>Escúchalo</span>
+            </button>
+          </div>
           <div class="available-price">$20,000 <span>MXN</span></div>
           <a class="btn available-btn" href="https://wa.me/529842768616?text=Hola%21%20Me%20interesa%20el%20handpan%20D%20Kurd%209%20Inoxidable%20Ember%20No.%202." target="_blank" rel="noopener">Apartar por WhatsApp</a>
           <a class="available-ask" href="#contact" data-subject="D Kurd 9 — Inoxidable Ember · No. 2">o envía un mensaje</a>
@@ -2221,6 +2254,23 @@ var revealObserver = new IntersectionObserver(function(entries) {
 }, { threshold: 0.08 });
 
 document.querySelectorAll(".reveal").forEach(function(el) { revealObserver.observe(el); });
+
+// === AVAILABLE: click-to-load instrument video ===
+document.querySelectorAll(".available-video .yt-play").forEach(function(btn) {
+  btn.addEventListener("click", function() {
+    var id = btn.getAttribute("data-yt");
+    if (!id) return;
+    var frame = document.createElement("div");
+    frame.className = "yt-frame";
+    var iframe = document.createElement("iframe");
+    iframe.src = "https://www.youtube.com/embed/" + id + "?autoplay=1&rel=0&playsinline=1";
+    iframe.title = "SHIVAPAN handpan video";
+    iframe.setAttribute("allow", "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture");
+    iframe.setAttribute("allowfullscreen", "");
+    frame.appendChild(iframe);
+    btn.replaceWith(frame);
+  });
+});
 
 // === AVAILABLE: prefill contact subject ===
 document.querySelectorAll(".available-ask").forEach(function(link) {
