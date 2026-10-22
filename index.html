@@ -546,6 +546,21 @@ section {
 .available-btn { text-align: center; }
 .available-ask { display: block; text-align: center; margin-top: 12px; font-size: 14px; font-style: italic; color: var(--text-dim); }
 .available-ask:hover { color: var(--gold); }
+.available-video { margin: 6px 0 2px; }
+.available-video .yt-play {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  width: 100%; cursor: pointer; background: transparent; color: var(--gold);
+  border: 1px solid var(--gold-dim); border-radius: 4px; padding: 11px 14px;
+  font-family: 'Cinzel', serif; font-size: 14px; letter-spacing: 2px;
+  transition: background .3s ease, color .3s ease;
+}
+.available-video .yt-play:hover { background: var(--gold); color: #0b0b0b; }
+.available-video .yt-play svg { width: 15px; height: 15px; fill: currentColor; flex-shrink: 0; }
+.available-video .yt-frame {
+  position: relative; width: 100%; max-width: 260px; margin: 4px auto 0;
+  aspect-ratio: 9 / 16; border-radius: 6px; overflow: hidden; background: #000;
+}
+.available-video .yt-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 .available-note { text-align: center; margin-top: 32px; color: var(--text-dim); font-style: italic; font-size: 15px; }
 
 /* --- INSTRUMENTS --- */
@@ -1458,6 +1473,12 @@ footer .footer-tagline {
           <div class="scale-mayan">Stainless Ember · No. 1</div>
           <div class="scale-notes">D3 · A3 · Bb3 · C4 · D4 · E4 · F4 · G4 · A4</div>
           <p>Stainless steel with a warm ember finish. Bright, clear tone with a long, singing sustain — and naturally resistant to rust and humidity, ideal for the tropical climate of the Riviera Maya.</p>
+          <div class="available-video">
+            <button type="button" class="yt-play" data-yt="ngSFghX1BKQ" aria-label="Play video of this handpan">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+              <span>Hear it</span>
+            </button>
+          </div>
           <div class="available-price">$20,000 <span>MXN</span></div>
           <a class="btn available-btn" href="https://wa.me/529842768616?text=Hola%21%20I%20am%20interested%20in%20the%20D%20Kurd%209%20Stainless%20Ember%20No.%201%20handpan." target="_blank" rel="noopener">Reserve via WhatsApp</a>
           <a class="available-ask" href="#contact" data-subject="D Kurd 9 — Stainless Ember · No. 1">or send a message</a>
@@ -1470,6 +1491,12 @@ footer .footer-tagline {
           <div class="scale-mayan">Nitrided Steel</div>
           <div class="scale-notes">D3 · A3 · Bb3 · C4 · D4 · E4 · F4 · G4 · A4</div>
           <p>Classic nitrided steel with a deep, dark finish. A warm, round and intimate voice with a softer sustain — the traditional handpan sound, perfect for meditation and slow, expressive playing.</p>
+          <div class="available-video">
+            <button type="button" class="yt-play" data-yt="D9-pppzhFlI" aria-label="Play video of this handpan">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+              <span>Hear it</span>
+            </button>
+          </div>
           <div class="available-price">$15,000 <span>MXN</span></div>
           <a class="btn available-btn" href="https://wa.me/529842768616?text=Hola%21%20I%20am%20interested%20in%20the%20D%20Kurd%209%20Nitrided%20Steel%20handpan." target="_blank" rel="noopener">Reserve via WhatsApp</a>
           <a class="available-ask" href="#contact" data-subject="D Kurd 9 — Nitrided Steel">or send a message</a>
@@ -1482,6 +1509,12 @@ footer .footer-tagline {
           <div class="scale-mayan">Stainless Ember · No. 2</div>
           <div class="scale-notes">D3 · A3 · Bb3 · C4 · D4 · E4 · F4 · G4 · A4</div>
           <p>Stainless steel with a warm ember finish. Bright, clear tone with a long, singing sustain — and naturally resistant to rust and humidity, ideal for the tropical climate of the Riviera Maya.</p>
+          <div class="available-video">
+            <button type="button" class="yt-play" data-yt="MNaCr2uWbfg" aria-label="Play video of this handpan">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+              <span>Hear it</span>
+            </button>
+          </div>
           <div class="available-price">$20,000 <span>MXN</span></div>
           <a class="btn available-btn" href="https://wa.me/529842768616?text=Hola%21%20I%20am%20interested%20in%20the%20D%20Kurd%209%20Stainless%20Ember%20No.%202%20handpan." target="_blank" rel="noopener">Reserve via WhatsApp</a>
           <a class="available-ask" href="#contact" data-subject="D Kurd 9 — Stainless Ember · No. 2">or send a message</a>
@@ -2221,6 +2254,23 @@ var revealObserver = new IntersectionObserver(function(entries) {
 }, { threshold: 0.08 });
 
 document.querySelectorAll(".reveal").forEach(function(el) { revealObserver.observe(el); });
+
+// === AVAILABLE: click-to-load instrument video ===
+document.querySelectorAll(".available-video .yt-play").forEach(function(btn) {
+  btn.addEventListener("click", function() {
+    var id = btn.getAttribute("data-yt");
+    if (!id) return;
+    var frame = document.createElement("div");
+    frame.className = "yt-frame";
+    var iframe = document.createElement("iframe");
+    iframe.src = "https://www.youtube.com/embed/" + id + "?autoplay=1&rel=0&playsinline=1";
+    iframe.title = "SHIVAPAN handpan video";
+    iframe.setAttribute("allow", "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture");
+    iframe.setAttribute("allowfullscreen", "");
+    frame.appendChild(iframe);
+    btn.replaceWith(frame);
+  });
+});
 
 // === AVAILABLE: prefill contact subject ===
 document.querySelectorAll(".available-ask").forEach(function(link) {

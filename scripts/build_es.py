@@ -99,6 +99,8 @@ T = [
      'Hola%21%20Me%20interesa%20el%20handpan%20D%20Kurd%209%20de%20acero%20nitrurado.'),
     ('Hola%21%20I%20am%20interested%20in%20the%20D%20Kurd%209%20Stainless%20Ember%20No.%202%20handpan.',
      'Hola%21%20Me%20interesa%20el%20handpan%20D%20Kurd%209%20Inoxidable%20Ember%20No.%202.'),
+    ('aria-label="Play video of this handpan"', 'aria-label="Reproducir el video de este handpan"'),
+    ('<span>Hear it</span>', '<span>Escúchalo</span>'),
     ('>Reserve via WhatsApp</a>', '>Apartar por WhatsApp</a>'),
     ('data-subject="D Kurd 9 — Stainless Ember · No. 1">or send a message</a>',
      'data-subject="D Kurd 9 — Inoxidable Ember · No. 1">o envía un mensaje</a>'),
