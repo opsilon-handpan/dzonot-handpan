@@ -561,6 +561,7 @@ section {
   aspect-ratio: 9 / 16; border-radius: 6px; overflow: hidden; background: #000;
 }
 .available-video .yt-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.available-video .yt-note { margin: 8px 0 0; text-align: center; font-size: 12px; font-style: italic; color: var(--text-dim); line-height: 1.5; }
 .available-note { text-align: center; margin-top: 32px; color: var(--text-dim); font-style: italic; font-size: 15px; }
 
 /* --- INSTRUMENTS --- */
@@ -862,7 +863,12 @@ section {
   box-shadow: 0 0 30px rgba(201,162,74,0.05);
 }
 
-.video-placeholder svg { width: 40px; height: 40px; opacity: 0.25; }
+.video-placeholder svg { width: 40px; height: 40px; opacity: 0.25; transition: opacity 0.3s ease, color 0.3s ease; }
+.video-placeholder[data-yt] { cursor: pointer; position: relative; overflow: hidden; }
+.video-placeholder[data-yt] span { font-family: 'Cinzel', serif; letter-spacing: 1px; color: var(--gold-dim); text-align: center; padding: 0 16px; }
+.video-placeholder[data-yt]:hover svg { opacity: 0.7; color: var(--gold); }
+.video-placeholder.playing { border-color: rgba(201,162,74,0.2); background: #000; }
+.video-placeholder.playing iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 
 /* --- CONTACT --- */
 .contact-section {
@@ -1476,8 +1482,9 @@ footer .footer-tagline {
           <div class="available-video">
             <button type="button" class="yt-play" data-yt="ngSFghX1BKQ" aria-label="Play video of this handpan">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-              <span>Hear it</span>
+              <span>VIDEO</span>
             </button>
+            <p class="yt-note">Video of this exact instrument for sale.</p>
           </div>
           <div class="available-price">$20,000 <span>MXN</span></div>
           <a class="btn available-btn" href="https://wa.me/529842768616?text=Hola%21%20I%20am%20interested%20in%20the%20D%20Kurd%209%20Stainless%20Ember%20No.%201%20handpan." target="_blank" rel="noopener">Reserve via WhatsApp</a>
@@ -1494,8 +1501,9 @@ footer .footer-tagline {
           <div class="available-video">
             <button type="button" class="yt-play" data-yt="D9-pppzhFlI" aria-label="Play video of this handpan">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-              <span>Hear it</span>
+              <span>VIDEO</span>
             </button>
+            <p class="yt-note">Video of this exact instrument for sale.</p>
           </div>
           <div class="available-price">$15,000 <span>MXN</span></div>
           <a class="btn available-btn" href="https://wa.me/529842768616?text=Hola%21%20I%20am%20interested%20in%20the%20D%20Kurd%209%20Nitrided%20Steel%20handpan." target="_blank" rel="noopener">Reserve via WhatsApp</a>
@@ -1512,8 +1520,9 @@ footer .footer-tagline {
           <div class="available-video">
             <button type="button" class="yt-play" data-yt="MNaCr2uWbfg" aria-label="Play video of this handpan">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-              <span>Hear it</span>
+              <span>VIDEO</span>
             </button>
+            <p class="yt-note">Video of this exact instrument for sale.</p>
           </div>
           <div class="available-price">$20,000 <span>MXN</span></div>
           <a class="btn available-btn" href="https://wa.me/529842768616?text=Hola%21%20I%20am%20interested%20in%20the%20D%20Kurd%209%20Stainless%20Ember%20No.%202%20handpan." target="_blank" rel="noopener">Reserve via WhatsApp</a>
@@ -1800,17 +1809,17 @@ footer .footer-tagline {
       <p class="section-subtitle">SHIVAPAN instruments in their element</p>
     </div>
     <div class="video-grid reveal reveal-stagger">
-      <div class="video-placeholder">
+      <div class="video-placeholder" data-yt="ngSFghX1BKQ" role="button" tabindex="0">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-        <span>Video coming soon</span>
+        <span>D Kurd 9 · Stainless Ember · No. 1</span>
       </div>
-      <div class="video-placeholder">
+      <div class="video-placeholder" data-yt="D9-pppzhFlI" role="button" tabindex="0">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-        <span>Video coming soon</span>
+        <span>D Kurd 9 · Nitrided Steel</span>
       </div>
-      <div class="video-placeholder">
+      <div class="video-placeholder" data-yt="MNaCr2uWbfg" role="button" tabindex="0">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-        <span>Video coming soon</span>
+        <span>D Kurd 9 · Stainless Ember · No. 2</span>
       </div>
     </div>
   </div>
@@ -2269,6 +2278,26 @@ document.querySelectorAll(".available-video .yt-play").forEach(function(btn) {
     iframe.setAttribute("allowfullscreen", "");
     frame.appendChild(iframe);
     btn.replaceWith(frame);
+  });
+});
+
+// === VIDEOS: click-to-load "See and Hear" gallery ===
+document.querySelectorAll(".video-placeholder[data-yt]").forEach(function(ph) {
+  function play() {
+    var id = ph.getAttribute("data-yt");
+    if (!id || ph.classList.contains("playing")) return;
+    var iframe = document.createElement("iframe");
+    iframe.src = "https://www.youtube.com/embed/" + id + "?autoplay=1&rel=0&playsinline=1";
+    iframe.title = "SHIVAPAN handpan video";
+    iframe.setAttribute("allow", "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture");
+    iframe.setAttribute("allowfullscreen", "");
+    ph.innerHTML = "";
+    ph.appendChild(iframe);
+    ph.classList.add("playing");
+  }
+  ph.addEventListener("click", play);
+  ph.addEventListener("keydown", function(e) {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); play(); }
   });
 });
 

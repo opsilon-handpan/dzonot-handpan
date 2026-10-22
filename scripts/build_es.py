@@ -100,7 +100,8 @@ T = [
     ('Hola%21%20I%20am%20interested%20in%20the%20D%20Kurd%209%20Stainless%20Ember%20No.%202%20handpan.',
      'Hola%21%20Me%20interesa%20el%20handpan%20D%20Kurd%209%20Inoxidable%20Ember%20No.%202.'),
     ('aria-label="Play video of this handpan"', 'aria-label="Reproducir el video de este handpan"'),
-    ('<span>Hear it</span>', '<span>Escúchalo</span>'),
+    ('<p class="yt-note">Video of this exact instrument for sale.</p>',
+     '<p class="yt-note">Video de este mismo instrumento a la venta.</p>'),
     ('>Reserve via WhatsApp</a>', '>Apartar por WhatsApp</a>'),
     ('data-subject="D Kurd 9 — Stainless Ember · No. 1">or send a message</a>',
      'data-subject="D Kurd 9 — Inoxidable Ember · No. 1">o envía un mensaje</a>'),
@@ -215,7 +216,9 @@ T = [
     ('<h2 class="section-title">See and Hear</h2>', '<h2 class="section-title">Mira y escucha</h2>'),
     ('<p class="section-subtitle">SHIVAPAN instruments in their element</p>',
      '<p class="section-subtitle">Instrumentos SHIVAPAN en su elemento</p>'),
-    ('<span>Video coming soon</span>', '<span>Video próximamente</span>'),
+    ('<span>D Kurd 9 · Stainless Ember · No. 1</span>', '<span>D Kurd 9 · Inoxidable Ember · No. 1</span>'),
+    ('<span>D Kurd 9 · Nitrided Steel</span>', '<span>D Kurd 9 · Acero nitrurado</span>'),
+    ('<span>D Kurd 9 · Stainless Ember · No. 2</span>', '<span>D Kurd 9 · Inoxidable Ember · No. 2</span>'),
 
     # --- contact ---
     ('<h2 class="section-title">Begin Your Journey</h2>', '<h2 class="section-title">Comienza tu camino</h2>'),
